@@ -17,11 +17,13 @@ SQL for relational data when keeping track of user API keys. We want to know who
 ## Database Schema
 
 ### Users
+
 id | apiKey
 ------------
 0  | dk234iadk87dfDIdapdid87
 
 ###Counters
+
 id | count
 ------------
 0  |  23

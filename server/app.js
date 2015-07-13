@@ -1,9 +1,12 @@
 var express = require('express');
 var app = express();
 
+
+app.use(express.static('client'));
+
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/', function(req, res) {
-  res.send('hello world');
+  res.send('../client/index.html');
 });
 
 var server = app.listen(3000, function () {
