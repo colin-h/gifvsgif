@@ -28,6 +28,8 @@ dbConnection.connect();
 
 //get check if user is in database
 exports.findUser = function(github_id, cb){
+
+  console.log("should be github_id : ", github_id);
   var queryStr = 'SELECT id, github_id, github_username, hasVoted FROM users WHERE github_id = (?);';
   dbConnection.query(queryStr, github_id, function(err, results){
 

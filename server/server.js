@@ -53,8 +53,6 @@ app.use(passport.session());
 //   have a database of user records, the complete GitHub profile is serialized
 //   and deserialized.
 passport.serializeUser(function(user, done) {
-  // console.log(user.id);
-  // console.log(user.username);
 
   var github_id = user.id;
   var github_username = user.username;
@@ -62,33 +60,25 @@ passport.serializeUser(function(user, done) {
   //check if user exists
   utils.findUser(github_id, function(err, dbUser){
 
-    console.log('user', user);
-    // console.log('hasVoted', hasVoted);
-
     //if user exists
     if (dbUser) {
       done(null, dbUser.github_id);
       console.log("user has been added to session with ", dbUser.github_id);
       console.log("user exists! check to see if they have voted");
 
-      //if user HAS NOT voted
-      // if (hasVoted === 0){
-      //   console.log("You have 1 vote!");
-        //send increment query to database (write in utils)
-
-      //if user HAS voted
-      // } else {
-        //return/send something
-      // }
+    //user doesn't exist
     } else {
 
+      //Add the user!
       console.log("user doesn't exist... add them!")
       utils.addUser(github_id, github_username, function(err, newUser){
+        console.log("This is the newUser after addUser succeeds : ", newUser);
         if (err) {
           return console.error(err);
         }
-        // console.log("----------", newUser;
-        done(null, newUser.id);
+
+        //Add User to session with their github_id
+        done(null, github_id);
       });
     }
 
@@ -102,12 +92,15 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(userId, done) {
 
   console.log("before we try to find in deserialize, userID is ", userId);
-  // TODO: Find user
-  utils.findUser(userId, function(err, dbUser){
 
+
+  utils.findUser(userId, function(err, dbUser){
+    //if found
     if (dbUser) {
+      //give back full user info
       done(null, dbUser);
     }
+    //else, return error
     else {
       done(err, null);
     }
@@ -155,28 +148,30 @@ app.post('/voteHard', function (req, res){
 app.post('/voteSoft', function (req, res){
   console.log("voteSoft user:", req.user);
 
+  //if user has not voted
   if (req.user.hasVoted === 0){
     console.log(req.user.github_username, "has a vote to use! change value in database");
 
-    //change count
+    //Change their vote value to 1
     utils.submitVote(req.user.github_id, function(err, results){
       console.log("time to increment the count");
       if (err){
         console.error(err);
       }
 
-      //increment vote
+      //incremenet the vote
       utils.incrementSoft(function(results){
         console.log("THE VOTE HAS BEEN INCREMENTED");
       });
     })
+
+  //if they have voted, return an error.
   } else {
     console.log("Oh no, this user has already voted");
 
   }
   res.send({})
-})
-
+});
 
 
 
@@ -186,11 +181,4 @@ var server = app.listen(3000, function () {
 
   console.log('Example app listening at http://%s:%s', host, port);
 });
-
-//Authentication Check (not used at the moment).
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  res.redirect('/')
-}
-
 
