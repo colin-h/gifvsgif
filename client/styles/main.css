@@ -31,6 +31,11 @@ i.medium:hover {
   color: #CCCCCC;
 }
 
+.title {
+  color: #EEEEEE;
+  padding-top: 5px;
+}
+
 .topSection {
   background-color: #3E606F;
   min-height: 10%;
@@ -41,9 +46,15 @@ i.medium:hover {
   color: #CCCCCC;
 }
 
+.gh-login {
+  float: right;
+  display: inline;
+  margin-top: 22px;
+}
+
 #main {
-  margin-top: 3%;
-  min-height: 74%;
+  margin-top: 2%;
+  min-height: 75%;
   /*margin-bottom: 3%;*/
 }
 
@@ -70,19 +81,19 @@ i.medium:hover {
 
 .phonetic {
   color: #CCCCCC;
-  font-size: 2em;
-  top: -20px;
+  font-size: 1.3em;
   margin-bottom: 10px;
 }
 
 .versus {
   margin-top: 190px;
   vertical-align: bottom;
+  font-size: 1em;
 }
 
 
 .count {
   font-weight: 800;
   font-size: 6rem;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }

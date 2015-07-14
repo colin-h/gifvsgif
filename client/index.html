@@ -18,8 +18,13 @@
   <body>
     <div class="topSection">
       <div class="row">
-        <div class="small-3 columns">
-          <p class="poweredBy">powered by the internet</p>
+        <div class="small-10 columns">
+          <h3 class="title">Gif vs Gif<h3>
+          <p class="poweredBy">A Worldwide Poll on the Pronunciation of gif</p>
+        </div>
+        <div class="small-2 columns">
+          <!-- <h4 class="">login to vote</h4> -->
+          <i class="fa fa-github-square medium gh-login"></i>
         </div>
       </div>
     </div>
@@ -32,19 +37,22 @@
           <div class="small-5 columns">
             <h1 class="count">{{ softGCount }}</h1>
             <h1>gif</h1>
-            <p class="phonetic">( ' j - if ' )</p>
+            <p class="phonetic">( ' j - if ' )<br>
+              Pronounced with a soft 'g'<br>
+              as in 'giraffe'</p>
             <a href="/auth/github" class="button voteBut">Vote</a>
           </div>
 
           <div class="small-2 columns versus">
             <h4>vs</h4>
-            <i class="fa fa-github-square medium"></i>
           </div>
 
           <div class="small-5 columns">
             <h1 class="count">{{ hardGCount }}</h1>
             <h1>gif</h1>
-            <p class="phonetic">( ' g - if ' )</p>
+            <p class="phonetic">( ' g - if ' )<br>
+              Pronounced with a hard 'g'<br>
+              as in 'goat'</p>
 
             <!-- <button class="voteBut" ng-click="voteSoft()">Gif</button> -->
             <a href="/auth/github" class="button voteBut">Vote</a>
