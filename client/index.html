@@ -16,6 +16,13 @@
   </head>
 
   <body>
+    <div class="topSection">
+      <div class="row">
+        <div class="small-3 columns">
+          <p class="poweredBy">powered by the internet</p>
+        </div>
+      </div>
+    </div>
 
     <div id="main" class="row">
       <div class="small-12 text-center columns">
@@ -25,8 +32,8 @@
           <div class="small-5 columns">
             <h1 class="count">{{ softGCount }}</h1>
             <h1>Gif</h1>
-            <p><strong class="phonetic">( ' j - if ' )</strong></p>
-            <button><a href="/auth/github">Gif</a></button>
+            <p class="phonetic">( ' j - if ' )</p>
+            <button class="voteBut"><a href="/auth/github">Gif</a></button>
           </div>
 
           <div class="small-2 columns versus">
@@ -37,13 +44,15 @@
           <div class="small-5 columns">
             <h1 class="count">{{ hardGCount }}</h1>
             <h1>Gif</h1>
-            <p><strong class="phonetic">( ' g - if ' )</strong></p>
-            <button ng-click="voteSoft()">Gif</button>
+            <p class="phonetic">( ' g - if ' )</p>
+            <button class="voteBut" ng-click="voteSoft()">Gif</button>
           </div>
 
         </div>
       </div>
     </div>
+
+    <div class="bottomSection"></div>
 
   </body>
 </html>
