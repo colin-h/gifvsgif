@@ -115,7 +115,7 @@ app.use('/scripts', express.static('bower_components'));
 
 
 app.get('/auth/github',
-  passport.authenticate('github', { scope: [ 'user:email' ] }),
+  passport.authenticate('github'),
     function(req, res){
       // The request will be redirected to GitHub for authentication, so this
       // function will not be called.
@@ -126,6 +126,19 @@ app.get('/auth/github/callback',
   function(req, res) {
     res.redirect('/');
   });
+
+app.get('/getCounts', function(req, res){
+  //call getCounts in utils
+  utils.getCounts(function(err, results){
+    if (err){
+      console.error(err);
+    }
+
+    console.log("the results from the getCounts GET are : ", results)
+    res.send(results);
+
+  })
+})
 
 
 //Handle adding votes
@@ -147,6 +160,7 @@ app.post('/voteSoft', function (req, res){
       //incremenet the vote
       utils.incrementSoft(function(results){
         console.log("THE VOTE HAS BEEN INCREMENTED");
+        res.send();
       });
     })
 
@@ -175,6 +189,7 @@ app.post('/voteHard', function (req, res){
       //incremenet the vote
       utils.incrementHard(function(results){
         console.log("THE VOTE HAS BEEN INCREMENTED");
+        res.send();
       });
     })
 

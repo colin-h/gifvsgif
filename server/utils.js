@@ -14,17 +14,21 @@ dbConnection.connect();
 
 
 
-// exports.signin = function(){
+//get Counts
+exports.getCounts = function(cb){
+
+  var queryStr = 'SELECT gif_type, votes FROM gif_counts;'
+  dbConnection.query(queryStr, function(err, results){
+    if (err) {
+      cb(err, null)
+    }
 
 
-//   console.log("yay");
+    //sends back full results
+    cb(null, results);
 
-//   passport.authenticate('github', { failureRedirect: '/login' }),
-//     function(req, res) {
-//       // Successful authentication, redirect home.
-//       res.redirect('/');
-//     }
-// };
+  })
+}
 
 //get check if user is in database
 exports.findUser = function(github_id, cb){
