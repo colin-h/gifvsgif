@@ -5,18 +5,24 @@ angular.module('gifvsgif.main', [])
 
   $scope.softGCount = 0;
   $scope.hardGCount = 0;
-
-  $scope.voteHard = function(){
-    return $http({
-      method : 'GET',
-      url: '/auth/github',
-    });
-
-    $scope.softGCount++;
-  };
+  $scope.hasVoted;
 
   $scope.voteSoft = function(){
-    $scope.hardGCount++;
+    //send post request to server
+    return $http({
+      method : 'POST',
+      url: '/voteSoft',
+    })
+
   };
+
+  $scope.voteHard = function(){
+
+    return $http({
+      method : 'POST',
+      url: '/voteHard',
+    })
+  };
+
 
 })

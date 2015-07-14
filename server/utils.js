@@ -14,40 +14,32 @@ dbConnection.connect();
 
 
 
-exports.signin = function(){
+// exports.signin = function(){
 
 
-  console.log("yay");
+//   console.log("yay");
 
-  passport.authenticate('github', { failureRedirect: '/login' }),
-    function(req, res) {
-      // Successful authentication, redirect home.
-      res.redirect('/');
-    }
-};
+//   passport.authenticate('github', { failureRedirect: '/login' }),
+//     function(req, res) {
+//       // Successful authentication, redirect home.
+//       res.redirect('/');
+//     }
+// };
 
 //get check if user is in database
 exports.findUser = function(github_id, cb){
-  var queryStr = 'SELECT id, github_username, hasVoted FROM users WHERE github_id = (?);';
+  var queryStr = 'SELECT id, github_id, github_username, hasVoted FROM users WHERE github_id = (?);';
   dbConnection.query(queryStr, github_id, function(err, results){
 
     //results is sent as an array of objects [ { id: 1, github_username: 'colin-h', hasVoted: 0 } ]
     //capture hasVoted property to pass back to our previous func in server.js
-    var hasVoted = results[0].hasVoted;
-    console.log(results);
-    console.log("find user results")
+    // var hasVoted = results[0].hasVoted;
     if (err) {
-      cb(400)
+      cb(400, null)
     }
+    console.log("successful find on : ", results);
 
-    if (results.length === 0) {
-      cb(false);
-    }
-
-    else {
-      cb(true, hasVoted);
-    }
-
+    cb(null, results[0]);
 
   })
 };
@@ -62,10 +54,45 @@ exports.addUser = function (github_id, github_username, cb){
     if (err){
       cb(400);
     }
-
-    cb(results);
+    console.log("# added user successfully");
+    cb(null, results);
   });
 }
+
+
+
+//send a vote to db
+exports.submitVote = function(github_id, cb){
+  //change users hasVoted to 1
+  var queryStr = "UPDATE users SET hasVoted = 1 WHERE github_id = (?);"
+
+
+  dbConnection.query(queryStr, github_id, function(err, results){
+    if (err){
+      cb(400)
+    }
+    console.log("vote changed successfully, results are : ", results);
+    cb(null, results);
+  });
+}
+
+exports.incrementSoft = function(cb){
+
+  //NOTE: id = 2 for soft g in database gif_counts
+  var queryStr = "UPDATE gif_counts SET votes = votes + 1 WHERE id = 2;"
+
+  dbConnection.query(queryStr, function (err, results){
+    if (err){
+      cb(400)
+    }
+    console.log("incrementSoft has succeeded!!");
+    cb(null, results);
+  })
+}
+
+
+
+
 
 //reference
 // exports.postUsers = function(username, cb){
@@ -75,9 +102,3 @@ exports.addUser = function (github_id, github_username, cb){
 //     cb(results);
 //   });
 // };
-
-
-//check if use has voted already ???
-exports.hasVoted = function(userEmail, cb){
-
-};
