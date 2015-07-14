@@ -7,8 +7,9 @@
     <link href='http://fonts.googleapis.com/css?family=Lora|Roboto' rel='stylesheet' type='text/css'>
 
     <script src="/scripts/angular/angular.js"></script>
+    <!-- // <script src="/scripts/foundation/angular.js"></script> -->
     <script src="app/app.js"></script>
-    <script src="./app/main/main.js"></script>
+    <script src="./app/main.js"></script>
   </head>
 
   <body>
@@ -16,7 +17,8 @@
 
 
     <div ng-controller="MainController">
-      <h1>{{ counter }}</h1>
+      <h1 >{{ softGCount }} vs {{ hardGCount }}</h1>
+      <button><a href="/auth/github">Gif</a></button> <button ng-click="voteSoft()">Gif</button>
 
 
     </div>
