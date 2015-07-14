@@ -31,9 +31,9 @@
         <div class="row" ng-controller="MainController">
           <div class="small-5 columns">
             <h1 class="count">{{ softGCount }}</h1>
-            <h1>Gif</h1>
+            <h1>gif</h1>
             <p class="phonetic">( ' j - if ' )</p>
-            <button class="voteBut"><a href="/auth/github">Gif</a></button>
+            <a href="/auth/github" class="button voteBut">Vote</a>
           </div>
 
           <div class="small-2 columns versus">
@@ -43,9 +43,11 @@
 
           <div class="small-5 columns">
             <h1 class="count">{{ hardGCount }}</h1>
-            <h1>Gif</h1>
+            <h1>gif</h1>
             <p class="phonetic">( ' g - if ' )</p>
-            <button class="voteBut" ng-click="voteSoft()">Gif</button>
+
+            <!-- <button class="voteBut" ng-click="voteSoft()">Gif</button> -->
+            <a href="/auth/github" class="button voteBut">Vote</a>
           </div>
 
         </div>
