@@ -3,8 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <title>Gif vs Gif</title>
-    <link rel="stylesheet" type="text/css" href="./styles/styles.css" />
+    <link rel="stylesheet" type="text/css" href="./foundation/css/foundation.min.css" />
+    <link rel="stylesheet" type="text/css" href="./styles/main.css" />
     <link href='http://fonts.googleapis.com/css?family=Lora|Roboto' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+
 
     <script src="/scripts/angular/angular.js"></script>
     <!-- // <script src="/scripts/foundation/angular.js"></script> -->
@@ -13,14 +16,33 @@
   </head>
 
   <body>
-    <h1>Gif vs Gif</h1>
+
+    <div id="main" class="row">
+      <div class="small-12 text-center columns">
 
 
-    <div ng-controller="MainController">
-      <h1 >{{ softGCount }} vs {{ hardGCount }}</h1>
-      <button><a href="/auth/github">Gif</a></button> <button ng-click="voteSoft()">Gif</button>
+        <div class="row" ng-controller="MainController">
+          <div class="small-5 columns">
+            <h1 class="count">{{ softGCount }}</h1>
+            <h1>Gif</h1>
+            <p><strong class="phonetic">( ' j - if ' )</strong></p>
+            <button><a href="/auth/github">Gif</a></button>
+          </div>
 
+          <div class="small-2 columns versus">
+            <h4>vs</h4>
+            <i class="fa fa-github-square medium"></i>
+          </div>
 
+          <div class="small-5 columns">
+            <h1 class="count">{{ hardGCount }}</h1>
+            <h1>Gif</h1>
+            <p><strong class="phonetic">( ' g - if ' )</strong></p>
+            <button ng-click="voteSoft()">Gif</button>
+          </div>
+
+        </div>
+      </div>
     </div>
 
   </body>
