@@ -25,6 +25,7 @@ exports.getCounts = function(cb){
 
 
     //sends back full results
+    //for Postgres change to results.rows
     cb(null, results);
 
   })
@@ -43,6 +44,7 @@ exports.findUser = function(github_id, cb){
     if (err) {
       cb(400, null)
     }
+    //for Postgres change to results.rows
     console.log("successful find on : ", results);
 
     cb(null, results[0]);
