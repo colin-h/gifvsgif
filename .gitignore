@@ -8,3 +8,4 @@ iisnode.yml
 node_modules/
 bower_components/
 ./keys.js
+./client/foundation
