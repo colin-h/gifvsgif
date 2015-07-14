@@ -92,6 +92,20 @@ exports.incrementSoft = function(cb){
   })
 }
 
+exports.incrementHard = function(cb){
+
+  //NOTE: id = 2 for Hard g in database gif_counts
+  var queryStr = "UPDATE gif_counts SET votes = votes + 1 WHERE id = 1;"
+
+  dbConnection.query(queryStr, function (err, results){
+    if (err){
+      cb(400)
+    }
+    console.log("incrementHard has succeeded!!");
+    cb(null, results);
+  })
+}
+
 
 
 

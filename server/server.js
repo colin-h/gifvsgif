@@ -128,22 +128,7 @@ app.get('/auth/github/callback',
   });
 
 
-//Handle user vote POST requests
-app.post('/voteHard', function (req, res){
-
-  console.log("voteHard user:", req.user);
-
-  //check if they have voted
-  if (req.user.hasVoted === 0){
-    console.log(req.user.github_username, "has a vote to use! change value in database");
-    //change count
-    //increment vote
-  } else {
-    console.log("Oh no, this user has already voted");
-
-  }
-
-})
+//Handle adding votes
 
 app.post('/voteSoft', function (req, res){
   console.log("voteSoft user:", req.user);
@@ -161,6 +146,34 @@ app.post('/voteSoft', function (req, res){
 
       //incremenet the vote
       utils.incrementSoft(function(results){
+        console.log("THE VOTE HAS BEEN INCREMENTED");
+      });
+    })
+
+  //if they have voted, return an error.
+  } else {
+    console.log("Oh no, this user has already voted");
+
+  }
+  res.send({})
+});
+
+app.post('/voteHard', function (req, res){
+  console.log("voteHard user:", req.user);
+
+  //if user has not voted
+  if (req.user.hasVoted === 0){
+    console.log(req.user.github_username, "has a vote to use! change value in database");
+
+    //Change their vote value to 1
+    utils.submitVote(req.user.github_id, function(err, results){
+      console.log("hasVoted value for ", req.user.github_username, "has been switched");
+      if (err){
+        console.error(err);
+      }
+
+      //incremenet the vote
+      utils.incrementHard(function(results){
         console.log("THE VOTE HAS BEEN INCREMENTED");
       });
     })
