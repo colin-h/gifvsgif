@@ -17,11 +17,39 @@ passport.serializeUser(function(user, done) {
   // console.log(user.id);
   // console.log(user.username);
 
-  var userID = user.id;
-  var username = user.username;
+  var github_id = user.id;
+  var github_username = user.username;
+
   //check if user exists
-  // utils.findUser()
-    //check if they have voted
+  utils.findUser(github_id, function(found, hasVoted){
+
+    console.log('user', user);
+    console.log('hasVoted', hasVoted);
+
+    //if user exists
+    if (found) {
+      console.log("user exists! check to see if they have voted");
+
+      //if user HAS NOT voted
+      if (hasVoted === 0){
+        //send increment query to database (write in utils)
+
+      //if user HAS voted
+      } else {
+        //return/send something
+      }
+    } else {
+
+      console.log("user doesn't exist... add them!")
+      utils.addUser(github_id, github_username, function(err){
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
+
+
+  })
 
 
   done(null, user);
@@ -54,7 +82,6 @@ passport.use(new GitHubStrategy({
 ));
 
 // EXPRESS initialization and config
-
 var app = express();
 
 app.use(passport.initialize());
@@ -80,22 +107,7 @@ app.get('/auth/github/callback',
     res.redirect('/');
   });
 
-// app.get('/logout', function(req, res){
-//   req.logout();
-//   res.redirect('/');
-// });
 
-
-
-
-
-//   function (req, res) {
-
-
-//   // console.log("crossed to server.js");
-//   utils.signin();
-//   res.end();
-// })
 
 
 var server = app.listen(3000, function () {
@@ -105,10 +117,10 @@ var server = app.listen(3000, function () {
   console.log('Example app listening at http://%s:%s', host, port);
 });
 
+//Authentication Check (not used at the moment).
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
   res.redirect('/')
 }
-//accept POST requests.
 
-//Headers
+

@@ -27,16 +27,45 @@ exports.signin = function(){
 };
 
 //get check if user is in database
-exports.findUser = function(userEmail, cb){
-  var queryStr = 'SELECT id, hasVoted FROM users WHERE email = (?)';
-  dbConnection.query(queryStr, userEmail, function(err, results){
+exports.findUser = function(github_id, cb){
+  var queryStr = 'SELECT id, github_username, hasVoted FROM users WHERE github_id = (?);';
+  dbConnection.query(queryStr, github_id, function(err, results){
+
+    //results is sent as an array of objects [ { id: 1, github_username: 'colin-h', hasVoted: 0 } ]
+    //capture hasVoted property to pass back to our previous func in server.js
+    var hasVoted = results[0].hasVoted;
+    console.log(results);
+    console.log("find user results")
     if (err) {
       cb(400)
     }
 
-    cb(results);
+    if (results.length === 0) {
+      cb(false);
+    }
+
+    else {
+      cb(true, hasVoted);
+    }
+
+
   })
 };
+
+exports.addUser = function (github_id, github_username, cb){
+
+  //last item is 0 to make hasVoted column falsy
+  var params = [github_id, github_username, 0];
+
+  var queryStr = 'INSERT INTO users (github_id, github_username, hasVoted) VALUES ((?), (?), (?));';
+  dbConnection.query(queryStr, params, function(err, results){
+    if (err){
+      cb(400);
+    }
+
+    cb(results);
+  });
+}
 
 //reference
 // exports.postUsers = function(username, cb){
