@@ -3,12 +3,12 @@ html {
   max-height: 100%;
 }
 body {
-  font-family: "Roboto", serif;
+  font-family: "Open Sans", serif;
 
 }
 
 p {
-  font-family: "Roboto";
+  font-family: "Open Sans";
 }
 
 h1, h2, h3, h4 {
@@ -53,8 +53,8 @@ i.medium:hover {
 }
 
 #main {
-  margin-top: 5%;
-  min-height: 72%;
+  margin-top: 7%;
+  min-height: 70%;
   /*margin-bottom: 3%;*/
 }
 
