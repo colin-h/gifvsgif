@@ -78,7 +78,7 @@ passport.serializeUser(function(user, done) {
       utils.addUser(github_id, github_username, function(err, newUser){
         console.log("This is the newUser after addUser succeeds : ", newUser);
         if (err) {
-          return console.error(err);
+          return console.log(err);
         }
 
         //Add User to session with their github_id
