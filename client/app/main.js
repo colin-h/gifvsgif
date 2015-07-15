@@ -13,16 +13,15 @@ angular.module('gifvsgif.main', [])
     }).then(function (voteCounts){
       console.log(voteCounts.data);
       console.log("voteCounts are above ^^^")
-      // $scope.hardGCount = voteCounts.data[0].votes;
-      // $scope.softGCount = voteCounts.data[1].votes;
 
-      if (voteCounts.data[0].gif_type = 'hard-g'){
-        $scope.hardGCount = voteCounts.data[0].votes;
+      if (voteCounts.data[0].id === 2) {
+        console.log("my count is", voteCounts.data[0].votes);
         $scope.softGCount = voteCounts.data[0].votes;
-
-      } else {
         $scope.hardGCount = voteCounts.data[1].votes;
-        $scope.softGCount = voteCounts.data[0].votes;
+
+      } else if (voteCounts.data[0].id === 1) {
+        $scope.hardGCount = voteCounts.data[0].votes;
+        $scope.softGCount = voteCounts.data[1].votes;
       }
     })
   }

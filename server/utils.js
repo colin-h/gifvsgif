@@ -2,14 +2,14 @@
 var pg = require('pg');
 var passport = require('passport');
 var GitHubStrategy = require('passport-github2').Strategy;
-// var keys = require('../client/keys.js')
+var keys = process.env.DATABASE_URL ? null : require('../client/keys.js')
 
 
 //Connection POSTGRESQL
 
 //for local, do this
-// var dbConnection = new pg.Client(process.env.DATABASE_URL || keys.pgData);
-var dbConnection = new pg.Client(process.env.DATABASE_URL);
+var dbConnection = new pg.Client(process.env.DATABASE_URL || keys.pgData);
+// var dbConnection = new pg.Client(process.env.DATABASE_URL);
 
 dbConnection.connect();
 
@@ -35,7 +35,7 @@ dbConnection.connect();
 //get Counts
 exports.getCounts = function(cb){
 
-  var queryStr = 'SELECT gif_type, votes FROM gif_counts;'
+  var queryStr = 'SELECT id, gif_type, votes FROM gif_counts;'
   dbConnection.query(queryStr, function(err, results){
     if (err) {
       cb(err, null)
