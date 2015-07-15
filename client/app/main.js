@@ -5,7 +5,6 @@ angular.module('gifvsgif.main', [])
 
   $scope.softGCount = 0;
   $scope.hardGCount = 0;
-  $scope.hasVoted;
 
   $scope.getCounts = function(){
     return $http({
@@ -14,8 +13,16 @@ angular.module('gifvsgif.main', [])
     }).then(function (voteCounts){
       console.log(voteCounts.data);
       console.log("voteCounts are above ^^^")
-      $scope.hardGCount = voteCounts.data[0].votes;
-      $scope.softGCount = voteCounts.data[1].votes;
+
+      if (voteCounts.data[0].id === 2) {
+        console.log("my count is", voteCounts.data[0].votes);
+        $scope.softGCount = voteCounts.data[0].votes;
+        $scope.hardGCount = voteCounts.data[1].votes;
+
+      } else if (voteCounts.data[0].id === 1) {
+        $scope.hardGCount = voteCounts.data[0].votes;
+        $scope.softGCount = voteCounts.data[1].votes;
+      }
     })
   }
 

@@ -35,7 +35,7 @@ dbConnection.connect();
 //get Counts
 exports.getCounts = function(cb){
 
-  var queryStr = 'SELECT gif_type, votes FROM gif_counts;'
+  var queryStr = 'SELECT id, gif_type, votes FROM gif_counts;'
   dbConnection.query(queryStr, function(err, results){
     if (err) {
       cb(err, null)
