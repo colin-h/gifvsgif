@@ -1,4 +1,4 @@
-var sql = require('mysql');
+// var sql = require('mysql');
 var pg = require('pg');
 var passport = require('passport');
 var GitHubStrategy = require('passport-github2').Strategy;
