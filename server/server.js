@@ -1,6 +1,6 @@
 var express = require('express');
 var session = require('cookie-session');
-// var keys = require('../client/keys.js');
+var keys = require('../client/keys.js');
 
 var utils = require('./utils.js');
 var passport = require('passport');
@@ -19,9 +19,9 @@ var app = express();
 passport.use(new GitHubStrategy({
 
     //for local, change to keys.clientID
-    clientID: process.env.GITHUB_CLIENTID,
+    clientID: process.env.GITHUB_CLIENTID || keys.clientID,
     //for local change to keys.clientSecret
-    clientSecret: process.env.GITHUB_CLIENTSECRET,
+    clientSecret: process.env.GITHUB_CLIENTSECRET || keys.clientSecret,
     //for local change to "http://localhost:3000/auth/github/callback"
     callbackURL: "http://gif-vs-gif.herokuapp.com/auth/github/callback"
   },
@@ -206,10 +206,10 @@ app.post('/voteHard', function (req, res){
 
 
 
-// var server = app.listen(3000, function () {
-//   var host = server.address().address;
-//   var port = server.address().port;
+var server = app.listen(process.env.PORT || 3000, function () {
+  var host = server.address().address;
+  var port = server.address().port;
 
-//   console.log('Example app listening at http://%s:%s', host, port);
-// });
+  console.log('Example app listening at http://%s:%s', host, port);
+});
 

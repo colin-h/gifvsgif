@@ -2,14 +2,14 @@
 var pg = require('pg');
 var passport = require('passport');
 var GitHubStrategy = require('passport-github2').Strategy;
-// var keys = require('../client/keys.js')
+var keys = require('../client/keys.js')
 
 
 //Connection POSTGRESQL
 
 //for local, do this
-// var dbConnection = new pg.Client(process.env.DATABASE_URL || keys.pgData);
-var dbConnection = new pg.Client(process.env.DATABASE_URL);
+var dbConnection = new pg.Client(process.env.DATABASE_URL || keys.pgData);
+// var dbConnection = new pg.Client(process.env.DATABASE_URL);
 
 dbConnection.connect();
 
