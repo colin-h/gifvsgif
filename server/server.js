@@ -1,6 +1,6 @@
 var express = require('express');
 var session = require('cookie-session');
-var keys = require('../keys.js');
+var keys = require('../client/keys.js');
 
 var utils = require('./utils.js');
 var passport = require('passport');
