@@ -1,6 +1,6 @@
 var express = require('express');
 var session = require('cookie-session');
-var keys = require('../client/keys.js');
+// var keys = require('../client/keys.js');
 
 var utils = require('./utils.js');
 var passport = require('passport');
@@ -19,9 +19,9 @@ var app = express();
 passport.use(new GitHubStrategy({
 
     //for local, change to keys.clientID
-    clientID: process.env.GITHUB_CLIENTID || keys.clientID,
+    clientID: process.env.GITHUB_CLIENTID,
     //for local change to keys.clientSecret
-    clientSecret: process.env.GITHUB_CLIENTSECRET || keys.clientSecret,
+    clientSecret: process.env.GITHUB_CLIENTSECRET,
     //for local change to "http://localhost:3000/auth/github/callback"
     callbackURL: "http://gif-vs-gif.herokuapp.com/auth/github/callback"
   },
