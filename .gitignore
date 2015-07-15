@@ -7,5 +7,13 @@ iisnode.yml
 
 node_modules/
 bower_components/
-./keys.js
 ./client/foundation
+
+# Floobits
+.floo
+.floobit
+.floo
+.flooignore
+
+#APi KEYS
+client/keys.js
