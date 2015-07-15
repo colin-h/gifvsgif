@@ -71,7 +71,7 @@ exports.addUser = function (github_id, github_username, cb){
   //last item is 0 to make hasVoted column falsy
   var params = [github_id, github_username, 0];
 
-  var queryStr = 'INSERT INTO users (github_id, github_username, hasVoted) VALUES (' + github_id + ',"' + github_username + '",' + 0 + ');';
+  var queryStr = "INSERT INTO users (github_id, github_username, hasVoted) VALUES (" + github_id + ",'" + github_username + "'," + 0 + ");";
   dbConnection.query(queryStr, function(err, results){
     if (err){
       console.log(err);
@@ -89,10 +89,10 @@ exports.addUser = function (github_id, github_username, cb){
 //send a vote to db
 exports.submitVote = function(github_id, cb){
   //change users hasVoted to 1
-  var queryStr = "UPDATE users SET hasVoted = 1 WHERE github_id = (?);"
+  var queryStr = "UPDATE users SET hasvoted = 1 WHERE github_id = " + github_id + ";";
 
 
-  dbConnection.query(queryStr, github_id, function(err, results){
+  dbConnection.query(queryStr, function(err, results){
     if (err){
       cb(400)
     }

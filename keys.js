@@ -11,3 +11,6 @@ exports.pgData = {
   password : 'gql82Mkpq8zDTD26Ktno3jBthg',
   ssl: true
 }
+
+//Postgresql heroku database url
+//postgres://itabicnwcegbfz:gql82Mkpq8zDTD26Ktno3jBthg@ec2-54-83-205-164.compute-1.amazonaws.com:5432/daaei5d8lt8lbd

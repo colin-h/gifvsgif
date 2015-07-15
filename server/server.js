@@ -147,7 +147,7 @@ app.post('/voteSoft', function (req, res){
   console.log("voteSoft user:", req.user);
 
   //if user has not voted
-  if (req.user.hasVoted === 0){
+  if (req.user.hasvoted === 0){
     console.log(req.user.github_username, "has a vote to use! change value in database");
 
     //Change their vote value to 1
@@ -176,12 +176,12 @@ app.post('/voteHard', function (req, res){
   console.log("voteHard user:", req.user);
 
   //if user has not voted
-  if (req.user.hasVoted === 0){
+  if (req.user.hasvoted === 0){
     console.log(req.user.github_username, "has a vote to use! change value in database");
 
     //Change their vote value to 1
     utils.submitVote(req.user.github_id, function(err, results){
-      console.log("hasVoted value for ", req.user.github_username, "has been switched");
+      console.log("hasvoted value for ", req.user.github_username, "has been switched");
       if (err){
         console.error(err);
       }
