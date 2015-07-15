@@ -2,7 +2,7 @@
 var pg = require('pg');
 var passport = require('passport');
 var GitHubStrategy = require('passport-github2').Strategy;
-var keys = require('../client/keys.js')
+// var keys = require('../client/keys.js')
 
 
 //Connection POSTGRESQL

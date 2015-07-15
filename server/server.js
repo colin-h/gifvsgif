@@ -1,6 +1,6 @@
 var express = require('express');
 var session = require('cookie-session');
-var keys = require('../client/keys.js');
+// var keys = require('../client/keys.js');
 
 var utils = require('./utils.js');
 var passport = require('passport');
@@ -17,9 +17,9 @@ var app = express();
 //   credentials (in this case, an accessToken, refreshToken, and GitHub
 //   profile), and invoke a callback with a user object.
 passport.use(new GitHubStrategy({
-    clientID: keys.clientID,
-    clientSecret: keys.clientSecret,
-    callbackURL: "http://localhost:3000/auth/github/callback"
+    clientID: ENV['GITHUB_CLIENTID'] || keys.clientID,
+    clientSecret: ENV['GITHUB_CLIENTSECRET'] || keys.clientSecret,
+    callbackURL: "http://gif-vs-gif.herokuapp.com/auth/github/callback" || "http://localhost:3000/auth/github/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
