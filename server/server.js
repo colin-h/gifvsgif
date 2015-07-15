@@ -112,9 +112,6 @@ passport.deserializeUser(function(userId, done) {
 app.use(express.static('client'));
 app.use('/scripts', express.static('bower_components'));
 
-app.get('/', function(){
-  console.log("testing");
-})
 
 app.get('/auth/github',
   passport.authenticate('github'),
