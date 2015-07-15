@@ -6,7 +6,11 @@ var GitHubStrategy = require('passport-github2').Strategy;
 
 
 //Connection POSTGRESQL
-var dbConnection = new pg.Client(process.env.DATABASE_URL || keys.pgData);
+
+//for local, do this
+// var dbConnection = new pg.Client(process.env.DATABASE_URL || keys.pgData);
+var dbConnection = new pg.Client(process.env.DATABASE_URL);
+
 dbConnection.connect();
 
 
