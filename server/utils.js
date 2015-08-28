@@ -14,24 +14,6 @@ var dbConnection = new pg.Client(process.env.DATABASE_URL || keys.pgData);
 dbConnection.connect();
 
 
-
-
-
-
-
-
-
-// //set up connection to the database MYSQL
-// var dbConnection = sql.createConnection({
-//   user: "root",
-//   password: "",
-//   database: "gifvsgif",
-// });
-
-// dbConnection.connect();
-
-
-
 //get Counts
 exports.getCounts = function(cb){
 

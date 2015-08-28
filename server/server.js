@@ -7,7 +7,7 @@ var callbackURL = process.env.DATABASE_URL ? "http://gif-vs-gif.herokuapp.com/au
 
 var utils = require('./utils.js');
 var passport = require('passport');
-var GitHubStrategy = require('passport-github2').Strategy;
+var GitHubStrategy = require('passport-github').Strategy;
 
 
 
@@ -31,12 +31,19 @@ passport.use(new GitHubStrategy({
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
     process.nextTick(function () {
+      console.log("inside the first auth request");
 
       // To keep the example simple, the user's GitHub profile is returned to
       // represent the logged-in user.  In a typical application, you would want
       // to associate the GitHub account with a user record in your database,
       // and return that user instead.
-      return done(null, profile);
+      var newUser = {}
+
+      newUser.github_id          =   profile.id;               //integer
+      newUser.github_username    =   profile.username;         //string
+
+
+      return done(null, newUser);
     });
   }
 ));
@@ -61,8 +68,11 @@ app.use(passport.session());
 //   and deserialized.
 passport.serializeUser(function(user, done) {
 
-  var github_id = user.id;
-  var github_username = user.username;
+  var github_id = user.github_id;
+  var github_username = user.github_username;
+
+  console.log("user inside serialize : ", user);
+  console.log("github_id in serialize : ", github_id)
 
   //check if user exists
   utils.findUser(github_id, function(err, dbUser){
@@ -128,7 +138,7 @@ app.get('/auth/github',
     });
 
 app.get('/auth/github/callback',
-  passport.authenticate('github', { failureRedirect: '/login' }),
+  passport.authenticate('github'),
   function(req, res) {
     res.redirect('/');
   });
