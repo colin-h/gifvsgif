@@ -6,13 +6,9 @@ var keys = process.env.DATABASE_URL ? null : require('../client/keys.js')
 
 
 //Connection POSTGRESQL
-
 //for local, do this
 var dbConnection = new pg.Client(process.env.DATABASE_URL || keys.pgData);
-// var dbConnection = new pg.Client(process.env.DATABASE_URL);
-
 dbConnection.connect();
-
 
 //get Counts
 exports.getCounts = function(cb){
@@ -22,8 +18,6 @@ exports.getCounts = function(cb){
     if (err) {
       cb(err, null)
     }
-
-
     //sends back full results
     //for Postgres change to results.rows
     cb(null, results.rows);
@@ -114,10 +108,6 @@ exports.incrementHard = function(cb){
     cb(null, results);
   })
 }
-
-
-
-
 
 //reference
 // exports.postUsers = function(username, cb){
