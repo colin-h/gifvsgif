@@ -11,11 +11,11 @@ angular.module('gifvsgif.main', [])
       method : 'GET',
       url : '/getCounts',
     }).then(function (voteCounts){
-      console.log(voteCounts.data);
-      console.log("voteCounts are above ^^^")
+      // console.log(voteCounts.data);
+      // console.log("voteCounts are above ^^^")
 
       if (voteCounts.data[0].id === 2) {
-        console.log("my count is", voteCounts.data[0].votes);
+        // console.log("my count is", voteCounts.data[0].votes);
         $scope.softGCount = voteCounts.data[0].votes;
         $scope.hardGCount = voteCounts.data[1].votes;
 
