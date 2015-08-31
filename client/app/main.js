@@ -30,7 +30,7 @@ angular.module('gifvsgif.main', [])
       url: '/voteSoft',
     }).then(function(err, results) {
       if (err) {
-        SweetAlert.alert("Sorry, you've already voted.");
+        alert("Sorry, you've already voted.");
       }
       return $scope.getCounts();
     })
@@ -41,8 +41,10 @@ angular.module('gifvsgif.main', [])
     return $http({
       method : 'POST',
       url: '/voteHard',
-    }).then(function(){
-
+    }).then(function(err, results){
+      if (err) {
+        alert("Sorry, you've already voted.");
+      }
       return $scope.getCounts();
     })
   };

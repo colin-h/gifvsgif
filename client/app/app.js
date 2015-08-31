@@ -1,5 +1,5 @@
 angular.module('gifvsgif', [
-  'gifvsgif.main'
+  'gifvsgif.main',
 ]);
 
 // .config(function($routeProvider, $httpProvider){
