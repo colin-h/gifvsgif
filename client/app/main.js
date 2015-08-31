@@ -29,9 +29,9 @@ angular.module('gifvsgif.main', [])
       method : 'POST',
       url: '/voteSoft',
     }).then(function(err, results) {
-      if (err) {
-        alert("Sorry, you've already voted.");
-      }
+      // if (err) {
+      //   alert("Sorry, you've already voted.");
+      // }
       return $scope.getCounts();
     })
   };
@@ -42,9 +42,9 @@ angular.module('gifvsgif.main', [])
       method : 'POST',
       url: '/voteHard',
     }).then(function(err, results){
-      if (err) {
-        alert("Sorry, you've already voted.");
-      }
+      // if (err) {
+      //   alert("Sorry, you've already voted.");
+      // }
       return $scope.getCounts();
     })
   };
