@@ -17,6 +17,7 @@
     "passport-github": "^1.0.0",
     "passport-github2": "^0.1.9",
     "passport-twitter": "^1.0.3",
-    "pg": "^4.4.0"
+    "pg": "^4.4.0",
+    "sweetalert": "^1.1.0"
   }
 }

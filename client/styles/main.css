@@ -17,7 +17,7 @@ h1, h2, h3, h4 {
 }
 
 a {
-  color: #fff;
+  color: #333333;
 }
 
 i.medium {
@@ -32,12 +32,12 @@ i.medium:hover {
 }
 
 .title {
-  color: #EEEEEE;
+  color: #333333;
   padding-top: 5px;
 }
 
 .topSection {
-  background-color: #3E606F;
+  background-color: #fff;
   min-height: 10%;
 }
 

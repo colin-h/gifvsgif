@@ -11,11 +11,8 @@ angular.module('gifvsgif.main', [])
       method : 'GET',
       url : '/getCounts',
     }).then(function (voteCounts){
-      // console.log(voteCounts.data);
-      // console.log("voteCounts are above ^^^")
 
       if (voteCounts.data[0].id === 2) {
-        // console.log("my count is", voteCounts.data[0].votes);
         $scope.softGCount = voteCounts.data[0].votes;
         $scope.hardGCount = voteCounts.data[1].votes;
 
@@ -31,11 +28,12 @@ angular.module('gifvsgif.main', [])
     return $http({
       method : 'POST',
       url: '/voteSoft',
-    }).then(function() {
+    }).then(function(err, results) {
+      if (err) {
+        alert("Sorry, you've already voted.");
+      }
       return $scope.getCounts();
     })
-
-
   };
 
   $scope.voteHard = function(){
@@ -43,11 +41,12 @@ angular.module('gifvsgif.main', [])
     return $http({
       method : 'POST',
       url: '/voteHard',
-    }).then(function(){
-
+    }).then(function(err, results){
+      if (err) {
+        alert("Sorry, you've already voted.");
+      }
       return $scope.getCounts();
     })
-
   };
 
   $scope.getCounts();

@@ -183,6 +183,7 @@ app.post('/voteSoft', function (req, res){
   //if they have voted, return an error.
   } else {
     console.log("Oh no, this user has already voted");
+    res.send("You have already voted.");
 
   }
   res.send({})

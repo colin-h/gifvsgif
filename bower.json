@@ -13,5 +13,6 @@
     "tests"
   ],
   "dependencies": {
+    "angular-sweetalert": "~1.1.0"
   }
 }

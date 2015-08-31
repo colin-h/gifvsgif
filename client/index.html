@@ -2,7 +2,7 @@
 <html ng-app='gifvsgif'>
   <head>
     <meta charset="utf-8" />
-    <title>Gif vs Gif</title>
+    <title>Gif or Gif</title>
     <link rel="stylesheet" type="text/css" href="./foundation/css/foundation.min.css" />
     <link rel="stylesheet" type="text/css" href="./styles/main.css" />
     <link href='http://fonts.googleapis.com/css?family=Lora|Roboto|Open+Sans' rel='stylesheet' type='text/css'>
@@ -22,7 +22,7 @@
     <div class="topSection">
       <div class="row">
         <div class="small-10 columns">
-          <h3 class="title">Gif vs Gif<h3>
+          <h3 class="title">Gif or Gif<h3>
           <p class="poweredBy">A Worldwide Poll on the Pronunciation of Gif</p>
           <!-- <p class="poweredBy">Powered by the Internet</p> -->
         </div>
@@ -38,35 +38,32 @@
 
 
         <div class="row" ng-controller="MainController">
-          <div class="small-5 columns">
-            <h1 class="count">{{ softGCount }}</h1>
-            <h1>gif</h1>
-            <p class="phonetic">( ' j - if ' )<br>
-              Pronounced with a soft 'g'<br>
-              as in 'giraffe'</p>
-            <a class="button voteBut" ng-click="voteSoft()">Vote</a>
-          </div>
 
-          <div class="small-2 columns versus">
-            <h4>vs</h4>
-          </div>
+          <ul class="small-block-grid-2">
+            <li><h1 class="count">{{ softGCount }}</h1>
+              <h1>gif</h1>
+              <p class="phonetic">( ' j - if ' )<br>
+                Pronounced with a soft 'g'<br>
+                as in 'giraffe'</p>
+              <a class="button voteBut" ng-click="voteSoft()">Vote</a>
+            </li>
+            <li><h1 class="count">{{ hardGCount }}</h1>
+              <h1>gif</h1>
+              <p class="phonetic">( ' g - if ' )<br>
+                Pronounced with a hard 'g'<br>
+                as in 'goat'</p>
 
-          <div class="small-5 columns">
-            <h1 class="count">{{ hardGCount }}</h1>
-            <h1>gif</h1>
-            <p class="phonetic">( ' g - if ' )<br>
-              Pronounced with a hard 'g'<br>
-              as in 'goat'</p>
+              <!-- <button class="voteBut" ng-click="voteSoft()">Gif</button> -->
+              <a class="button voteBut" ng-click="voteHard()">Vote</a>
+            </li>
+          </ul>
 
-            <!-- <button class="voteBut" ng-click="voteSoft()">Gif</button> -->
-            <a class="button voteBut" ng-click="voteHard()">Vote</a>
-          </div>
 
         </div>
       </div>
     </div>
 
-    <div class="bottomSection"></div>
+    <!-- <div class="bottomSection"></div> -->
 
   </body>
 </html>
